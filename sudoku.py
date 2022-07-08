@@ -45,12 +45,60 @@ Examples:
     SUDOKU.print_container()
     ```
 '''
+from copy import deepcopy
 
 class SudokuSolver():
     '''
-    Add class string here
+    Description
+    ------------------------------------------------------
+    input:
+        original_container (list): Always provides original `container`
+        container (list): Should be in the below format -
+                    container = []
+                    container.append([0, 0, 0, 0, 0, 8, 3, 0, 0])
+                    container.append([0, 0, 0, 0, 2, 4, 0, 9, 0])
+                    container.append([0, 0, 4, 0, 7, 0, 0, 0, 6])
+                    container.append([0, 0, 0, 0, 0, 3, 0, 7, 9])
+                    container.append([7, 5, 0, 0, 0, 0, 0, 8, 4])
+                    container.append([9, 2, 0, 5, 0, 0, 0, 0, 0])
+                    container.append([4, 0, 0, 0, 9, 0, 1, 0, 0])
+                    container.append([0, 3, 0, 4, 6, 0, 0, 0, 0])
+                    container.append([0, 0, 5, 8, 0, 0, 0, 0, 0])
+
+    - Zeros are unknown values
+    - All values must be between 1 and 9 when known
+    - Solves standard sudoku puzzle
+    - Learn more here: https://youtu.be/8zRXDsGydeQ
+
+    Recommended User Interface
+    ------------------------------------------------------
+        SUDOKU = SudokuSolver(container)
+        SUDOKU.print_container()
+        SUDOKU.solve()
+        SUDOKU.print_container()
+        SUDOKU.print_original_container()
+
+
+    Methods and Attributes
+    ------------------------------------------------------
+    solve(): Method
+                - will solve the puzzle
+
+    print_container(): Method
+                    - will show the puzzle
+                    - finished or starting depending on if you have run solve()
+
+    print_original_container(): Method
+                    - will always show the original container
+                    - even afte ryou have run solve()
+
+    container: Attribute
+                    - will hold puzzle
+                    - less pretty than print_container()
     '''
+
     def __init__(self, container):
+        self.original_container = deepcopy(container)
         self.container = container
         self.subtract_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}
 
@@ -97,10 +145,8 @@ class SudokuSolver():
                 row_num,
                 col_num).intersection(
                 self.check_horizontal(
-                    row_num,
-                    col_num)).intersection(
+                    row_num)).intersection(
                     self.check_vertical(
-                        row_num,
                         col_num)))
         return poss_vals
 
@@ -180,6 +226,8 @@ class SudokuSolver():
         '''
         Print the puzzle
         '''
+        print()
+        print()
         for row_idx, row in enumerate(self.container):
             for val_idx, val in enumerate(row):
                 if (val_idx) % 3 == 0 and val_idx < 8 and val_idx > 0:
@@ -190,9 +238,23 @@ class SudokuSolver():
                 print("_____________________", end='')
                 print()
             print()
+
+    def print_original_container(self):
+        '''
+        Print the puzzle
+        '''
         print()
-        print("||||||||||||||||||||||")
         print()
+        for row_idx, row in enumerate(self.original_container):
+            for val_idx, val in enumerate(row):
+                if (val_idx) % 3 == 0 and val_idx < 8 and val_idx > 0:
+                    print("|", end=' ')
+                print(val, end=' ')
+            print()
+            if (row_idx - 2) % 3 == 0 and row_idx < 8:
+                print("_____________________", end='')
+                print()
+            print()
 
     def solve(self):
         '''
@@ -205,7 +267,11 @@ class SudokuSolver():
                 if val == 0:
                     zero_count += 1
 
+        print()
+        print('Solving puzzle')
         print(f'There are {zero_count} moves I have to make!')
+        print('To see solution use the `print_container()` method')
+        print('To see the original use the `print_original_container()` method')
         solving = True
 
         while solving:
