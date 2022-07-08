@@ -74,9 +74,7 @@ You can also test that your own puzzles are valid by updating the function:
         return container, container_sol
     ```
 
-with your own `container` and `container_sol`.
-
-Then simply add your own check similar to
+with your own `container` and `container_sol`. Then simply add your own check similar to:
 
     ```python
     TEST_ORIGINAL, TEST_SOLUTION = test1()
