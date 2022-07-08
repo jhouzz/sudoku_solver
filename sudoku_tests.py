@@ -132,4 +132,4 @@ if __name__ == "__main__":
     SUDOKU_TWO.solve()
     my_solution = SUDOKU_TWO.container
     if my_solution == test_solution:
-        print("You passed test1 with the following table:")
+        print("You passed test1!")
