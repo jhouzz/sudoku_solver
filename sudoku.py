@@ -228,6 +228,11 @@ class SudokuSolver():
         Print the puzzle
         '''
         print()
+        if self.original_container == self.container:
+            print("Original Puzzle:")
+        else:
+            print("Solution Puzzle:")
+        print()
         print()
         for row_idx, row in enumerate(self.container):
             for val_idx, val in enumerate(row):
@@ -244,6 +249,8 @@ class SudokuSolver():
         '''
         Print the puzzle
         '''
+        print()
+        print("Original Puzzle:")
         print()
         print()
         for row_idx, row in enumerate(self.original_container):
