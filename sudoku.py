@@ -47,6 +47,7 @@ Examples:
 '''
 from copy import deepcopy
 
+
 class SudokuSolver():
     '''
     Description
@@ -315,3 +316,4 @@ if __name__ == "__main__":
     SUDOKU.print_container()
     SUDOKU.solve()
     SUDOKU.print_container()
+    SUDOKU.print_original_container()
