@@ -2,7 +2,7 @@
 * Update this string to be better.
 * Update other doc strings
 * clean up syntax (especially in the main block)
-* create an a script example use script that uses both this and the sudoku.py script in practice.
+* create an a script/notebook example that uses both this and the sudoku.py script in practice.
 
 Contains tests to ensure that your Sudoku puzzle is valid
 
