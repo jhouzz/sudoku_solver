@@ -133,3 +133,5 @@ if __name__ == "__main__":
     my_solution = SUDOKU_TWO.container
     if my_solution == test_solution:
         print("You passed test1!")
+    else:
+        print("You failed test1!")
