@@ -6,6 +6,8 @@ This repository contains code that will allow you to solve any Sudoku Puzzle!  I
 
 [![](sudoku_download.jpeg)](https://youtu.be/8zRXDsGydeQ)
 
+Inspired by [my original blog here](https://towardsdatascience.com/want-to-be-a-real-world-data-scientist-make-these-changes-to-your-portfolio-projects-e61d1139c018).
+
 ### How to Use
 
 Now that you are familiar with Sudoku, let's look at how you can use the code in this repository.  There are three files to be familiar with:
