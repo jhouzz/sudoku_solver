@@ -158,34 +158,37 @@ class SudokuTests():
              - no duplicate values in a square
         '''
         # check container is not empty
-        if np.sum(self.puzzle) == 0:
-            return "Cannot solve. Multiple possible solutions"
+        try:
+            if np.sum(self.puzzle) == 0:
+                return "Cannot solve. Multiple possible solutions"
 
-        # check rows and columns
-        con = np.array(self.puzzle)
-        for val in range(9):
-            if len(set(con[val, :][con[val, :] > 0])) != len(
-                    con[val, :][con[val, :] > 0]):
+            # check rows and columns
+            con = np.array(self.puzzle)
+            for val in range(9):
+                if len(set(con[val, :][con[val, :] > 0])) != len(
+                        con[val, :][con[val, :] > 0]):
+                    return "Cannot solve. Start Board Has Impossibility."
+
+                if len(set(con[:, val][con[:, val] > 0])) != len(
+                        con[:, val][con[:, val] > 0]):
+                    return "Cannot solve. Start Board Has Impossibility."
+
+            # check 3x3 squares - do for all combos of `:3`, `3:6`, and `6:` for
+            # rows and columns
+            hlder = []
+            for row in con[:3, :3]:
+                hlder.extend(row)
+            if self.valid_helper(hlder):
                 return "Cannot solve. Start Board Has Impossibility."
 
-            if len(set(con[:, val][con[:, val] > 0])) != len(
-                    con[:, val][con[:, val] > 0]):
-                return "Cannot solve. Start Board Has Impossibility."
+            # in solution code, there are more cases like the above...
+            # they would go here
 
-        # check 3x3 squares - do for all combos of `:3`, `3:6`, and `6:` for
-        # rows and columns
-        hlder = []
-        for row in con[:3, :3]:
-            hlder.extend(row)
-        if self.valid_helper(hlder):
-            return "Cannot solve. Start Board Has Impossibility."
-
-        # in solution code, there are more cases like the above...
-        # they would go here
-
-        # check max and min within bounds
-        if np.max(con) > 9 or np.min(con) < 0:
-            return "Cannot solve. Input Value Out of Bounds."
+            # check max and min within bounds
+            if np.max(con) > 9 or np.min(con) < 0:
+                return "Cannot solve. Input Value Out of Bounds."
+        except IndexError:
+            return "Cannot solve. Input Has Invalid Dimensions"
 
         return "Your Puzzle Looks Valid.  Try to Solve It!"
 
